@@ -1,0 +1,52 @@
+.mini-cart-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-icon {
+    cursor: pointer;
+    position: relative;
+    font-size: 24px;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+  
+  .mini-cart-popup {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    width: 250px;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  .mini-cart-popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .mini-cart-popup li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .mini-cart-popup li div {
+    margin-left: 5px;
+    flex: 1;
+  }
+  
