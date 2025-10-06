@@ -5,9 +5,12 @@ import ProductListPage from "./components/pages/ProductListPage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./components/Cart/CartContext";
+import { AuthProvider } from "./context/AuthContext";
+import Navbar from "./components/signup/Navbar";
 
 function App() {
   return (
+    <AuthProvider>
     <CartProvider>
       <Router>
         <Header />
@@ -18,6 +21,7 @@ function App() {
         <Footer />
       </Router>
     </CartProvider>
+    </AuthProvider>
   );
 }
 
