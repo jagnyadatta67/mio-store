@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./components/Cart/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/signup/Navbar";
+import CartPage from "./components/Cart/CartPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/products" element={<ProductListPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
         <Footer />
       </Router>

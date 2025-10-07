@@ -44,10 +44,12 @@ const Header = () => {
           )}
 
           {/* Cart */}
+          <Link to="/cart" className="cart-link">
           <div className="cart-icon">
             🛒
             {totalCount > 0 && <span className="cart-count">{totalCount}</span>}
           </div>
+          </Link>
         </div>
       </div>
 

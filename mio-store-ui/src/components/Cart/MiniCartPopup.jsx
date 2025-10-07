@@ -13,9 +13,10 @@ const MiniCartPopup = () => {
         🛒
         {cartItems.length > 0 && <span className="badge">{cartItems.length}</span>}
       </div>
-
+     console.log(cartItems+"sdsfsdfsdfsdf")
       {open && (
         <div className="mini-cart-popup">
+          console.log(cartItems)
           {cartItems.length === 0 ? (
             <p>Cart is empty</p>
           ) : (
@@ -24,7 +25,7 @@ const MiniCartPopup = () => {
                 <li key={item.id}>
                   <img src={item.imageUrl} alt={item.name} width={40} />
                   <div>
-                    <strong>{item.name}</strong>
+                    <strong>{item.sku}</strong>
                     <p>Qty: {item.quantity}</p>
                     {item.offer && <p>Offer: {item.offer.title}</p>}
                   </div>

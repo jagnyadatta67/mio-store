@@ -100,4 +100,279 @@
     text-align: center;
     transition: box-shadow 0.2s;
   }
+  .product-card {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .product-image {
+    position: relative;
+  }
+  
+  .product-image img {
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  /* 🔹 Offer title (top-left) */
+  .offer-title-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff6600;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  /* 🔹 Discount percent (bottom-right) */
+  .offer-percent-tag {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #28a745;
+    color: white;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 8px;
+    font-size: 14px;
+  }
+  .unit-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+    background: #f8f8f8;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 5px 0 8px 0;
+    border: 1px solid #ddd;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .product-image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .offer-title-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff6600;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 8px;
+    border-radius: 6px;
+  }
+  
+  .offer-percent-tag {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #4caf50;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 6px;
+    border-radius: 6px;
+  }
+  
+  .product-info {
+    padding: 15px;
+  }
+  
+  .product-description {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  /* 🟨 Variant section */
+  .variant-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .variant-box {
+    flex: 1 1 30%;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: 0.2s;
+  }
+  
+  .variant-box:hover {
+    background: #fff5f7;
+    border-color: #e91e63;
+  }
+  
+  .variant-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .variant-price {
+    font-size: 14px;
+    color: #222;
+    margin: 4px 0;
+  }
+  
+  .variant-original {
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 4px;
+  }
+  
+  .variant-add-btn {
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  
+  .variant-add-btn:hover {
+    background: #d81b60;
+  }
+  
+  .variant-add-btn {
+    background-color: #ffb100;
+    color: #000;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .variant-add-btn:hover {
+    background-color: #ffa600;
+    transform: scale(1.03);
+  }
+  
+  .variant-add-btn.added {
+    background-color: #28a745;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(72, 239, 128, 0.7);
+    animation: addedPulse 0.5s ease-in-out;
+  }
+  
+  @keyframes addedPulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+  
+  /* 💚 Optional Floating Checkmark Animation */
+  @keyframes floatUp {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+
+  /* 🌿 Healthy Rotating Banner */
+.healthy-banner {
+  margin: 1rem auto 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2e7d32;
+  background: #e8f5e9;
+  border-radius: 10px;
+  padding: 12px 20px;
+  width: fit-content;
+  animation: fadeIn 1s ease-in-out;
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
+}
+
+.fade-in-text {
+  animation: fadeText 1s ease-in-out;
+}
+
+@keyframes fadeText {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
   
