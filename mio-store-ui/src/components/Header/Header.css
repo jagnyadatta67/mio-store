@@ -1,9 +1,19 @@
+/* ============================
+   🔝 Header Base Styles
+============================ */
+
+
 .header {
     background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .header.scrolled {
+    padding: 0.2rem 0;
+    transform: translateY(0);
   }
   
   .topbar {
@@ -15,74 +25,44 @@
   
   .logo img {
     height: 50px;
+    transition: height 0.3s ease;
   }
   
+  .header.scrolled .logo img {
+    height: 40px;
+  }
+  
+  /* ============================
+     🧭 Navigation Links
+  ============================ */
   .main-nav a {
     margin: 0 1rem;
     color: #333;
     font-weight: 500;
     text-decoration: none;
+    transition: color 0.3s;
   }
   
   .main-nav a:hover {
     color: #00a86b;
   }
   
+  /* ============================
+     ⚙️ Right Section
+  ============================ */
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
   }
   
-  .login-btn {
-    background: #00a86b;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .login-btn:hover {
-    background: #008f5a;
-  }
-  
-  .logout-btn {
-    background: transparent;
-    border: 1px solid #aaa;
-    color: #333;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .cart-icon {
-    position: relative;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .cart-count {
-    position: absolute;
-    top: -6px;
-    right: -10px;
-    background: #ff5f5f;
-    color: #fff;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    border-radius: 50%;
-  }
-  
-
-
-  /* ✅ Account Dropdown */
-.nav-right {
+  /* ============================
+     👤 Account Dropdown
+  ============================ */
+  .nav-right {
     position: relative;
     display: flex;
     align-items: center;
-    margin-right: 1rem;
   }
   
   .account-btn {
@@ -145,6 +125,66 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  
+  /* ============================
+     💳 Buttons
+  ============================ */
+  .login-btn {
+    background: #00a86b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background: #008f5a;
+  }
+  
+  .logout-btn {
+    background: transparent;
+    border: 1px solid #aaa;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  /* ============================
+     🛒 Cart Icon
+  ============================ */
+  .cart-icon {
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #ff5f5f;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+  }
+  
+  /* ============================
+     📱 Responsive
+  ============================ */
+  @media (max-width: 768px) {
+    .topbar {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .main-nav {
+      margin-top: 0.5rem;
     }
   }
   

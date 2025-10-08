@@ -5,14 +5,16 @@ import LoginModal from "../signup/LoginModal";
 import { useAuth } from "../../context/AuthContext";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import CartPopup from "../Cart/MiniCartPopup";
 import "./Header.css";
 
 const Header = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, miniCartProduct } = useContext(CartContext);
   const { user, logout } = useAuth();
   const { token } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const dropdownRef = useRef(null);
 
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -28,9 +30,29 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ✅ Show popup when miniCartProduct changes
+  useEffect(() => {
+    if (miniCartProduct) {
+      setShowPopup(true);
+      const timer = setTimeout(() => setShowPopup(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [miniCartProduct]);
+
+  // ✅ Add shrink effect when scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector(".header");
+      if (window.scrollY > 20) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header className="header container">
-      <div className="container topbar">
+      <div className="topbar">
         {/* 🔹 Logo */}
         <div className="logo">
           <Link to="/">
@@ -103,6 +125,14 @@ const Header = () => {
       {/* 🔹 Popup Components */}
       <MiniCart />
       {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+
+      {/* ✅ Cart popup near cart icon */}
+      {showPopup && miniCartProduct && (
+        <CartPopup
+          product={miniCartProduct}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
     </header>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CartContext } from "../Cart/CartContext";
 import { AuthContext } from "../../context/AuthContext";
-import { addToCartApi } from "../../api/cartService";
 import "./ProductListPage.css";
 
 const healthyMessages = [
@@ -18,8 +17,8 @@ const ProductListPage = () => {
   const [addedVariant, setAddedVariant] = useState(null);
   const [messageIndex, setMessageIndex] = useState(0);
 
-  const { addToCart } = useContext(CartContext);
-  const { token } = useContext(AuthContext); // ✅ Auth token from login
+const { addToCart, fetchCart } = useContext(CartContext);
+  const { token } = useContext(AuthContext);
 
   // 🟩 Fetch Products
   useEffect(() => {
@@ -29,7 +28,7 @@ const ProductListPage = () => {
         const data = await res.json();
         setProducts(data);
       } catch (err) {
-        console.error("Failed to fetch products:", err);
+        console.error("❌ Failed to fetch products:", err);
       }
     };
     fetchProducts();
@@ -43,32 +42,33 @@ const ProductListPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔍 Filter products by name or brand
+  // 🔍 Filter products
   const filteredProducts = products.filter((p) =>
     (p.name || p.brand || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // 🛒 Handle Add to Cart (with API + animation)
+  // 🛒 Add to Cart
   const handleAdd = async (variant) => {
     if (!token) {
       alert("Please log in to add items to your cart.");
       return;
     }
 
+    console.log(variant,"PDPD")
     try {
-      // Call backend API
-      const result = await addToCartApi(variant.sku, 1, token);
-      console.log("✅ Added to cart:", result);
+      // 🔥 Use context’s unified addToCart — it will internally call backend + update cart state
+      console.log(variant.sku)
+      await addToCart(variant, 1);
 
-      // Update context
-      addToCart(variant);
+      // ✅ Refresh cart so Header / MiniCart updates
+      await fetchCart();
 
-      // Trigger animation
+      // ✅ Feedback animation
       setAddedVariant(variant.sku);
       setTimeout(() => setAddedVariant(null), 1500);
-    } catch (error) {
-      console.error("❌ Error adding to cart:", error);
-      alert("Failed to add to cart. Please try again.");
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      alert("Failed to add item. Please try again.");
     }
   };
 
@@ -76,14 +76,14 @@ const ProductListPage = () => {
     <div className="product-list-container">
       <h1>Our Products</h1>
 
-      {/* 🌿 Rotating Healthy Message */}
+      {/* 🌿 Healthy Banner */}
       <div className="healthy-banner">
         <p key={messageIndex} className="fade-in-text">
           {healthyMessages[messageIndex]}
         </p>
       </div>
 
-      {/* 🔍 Search Box */}
+      {/* 🔍 Search */}
       <input
         type="text"
         placeholder="Search products..."
@@ -101,10 +101,7 @@ const ProductListPage = () => {
             <div key={product.id} className="product-card">
               <div className="product-image">
                 <img
-                  src={
-                    product.imageUrl 
-                    
-                  }
+                  src={product.imageUrl}
                   alt={product.name || "Product"}
                   loading="lazy"
                 />

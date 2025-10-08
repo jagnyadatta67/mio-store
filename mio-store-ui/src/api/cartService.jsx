@@ -1,82 +1,101 @@
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
 
-// Add item to cart
-export const addToCartApi = async (variantId, quantity = 1, token) => {
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// ✅ Always attach the latest token from localStorage or session
+apiClient.interceptors.request.use(
+  (config) => {
+    const token =
+      localStorage.getItem("jwtToken") ||
+      sessionStorage.getItem("jwtToken"); // fallback
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    } else {
+      console.warn("⚠️ No token found while making API request:", config.url);
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// ⚡ Centralized error logging helper
+const handleError = (error, message) => {
+  console.error(`❌ ${message}:`, error.response?.data || error.message);
+  throw new Error(error.response?.data?.message || message);
+};
+
+/**
+ * 🛒 Add an item to cart
+ * @param {string} variantId - Variant SKU or ID
+ * @param {number} quantity - Quantity to add
+ */
+export const addToCartApi = async (variantId, quantity = 1) => {
   try {
-    const response = await axios.post(
-      `${API_BASE_URL}/cart/add`,
-      { variant: variantId, quantity },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await apiClient.post("/cart/add", {
+      variant: variantId,
+      quantity,
+    });
     return response.data;
   } catch (error) {
-    console.error("❌ Error adding to cart:", error.response?.data || error.message);
-    throw error;
+    handleError(error, "Failed to add item to cart");
   }
 };
 
-// Get current cart (for mini cart)
-export const getCartApi = async (token) => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/cart`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error("❌ Failed to fetch cart:", error);
-      throw error;
-    }
-  };
+/**
+ * 🧾 Get current user's cart
+ */
+export const getCartApi = async () => {
+  try {
+    const response = await apiClient.get("/cart");
+    return response.data;
+  } catch (error) {
+    handleError(error, "Failed to fetch cart");
+  }
+};
 
-  export const updateCartItemApi = async (variant, quantity, token) => {
-    try {
-      const response = await axios.put(
-        `http://localhost:8080/api/cart/update`,
-    { variant, quantity },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("❌ Failed to update cart item:", error);
-      throw error;
-    }
-  };
-  
-  export const removeCartItemApi = async (variantId, token) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/cart/remove/${variantId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("❌ Failed to remove cart item:", error);
-      throw error;
-    }
-  };
-
-  export const getCartSuggestionsApi = async (token) => {
-    const res = await fetch("http://localhost:8080/api/cart/suggestions", {
-      headers: { Authorization: `Bearer ${token}` },
+/**
+ * 🔁 Update item quantity in cart
+ */
+export const updateCartItemApi = async (variantId, quantity) => {
+  try {
+    const response = await apiClient.put("/cart/update", {
+      variant: variantId,
+      quantity,
     });
-    if (!res.ok) throw new Error("Failed to fetch suggestions");
-    return res.json();
-  };
-  
-  
+    return response.data;
+  } catch (error) {
+    handleError(error, "Failed to update cart item");
+  }
+};
+
+/**
+ * ❌ Remove item from cart
+ */
+export const removeCartItemApi = async (variantId) => {
+  try {
+    const response = await apiClient.delete(`/cart/remove/${variantId}`);
+    return response.data;
+  } catch (error) {
+    handleError(error, "Failed to remove item from cart");
+  }
+};
+
+/**
+ * 💡 Get smart product suggestions (cross-sell)
+ */
+export const getCartSuggestionsApi = async () => {
+  try {
+    const response = await apiClient.get("/cart/suggestions");
+    return response.data;
+  } catch (error) {
+    handleError(error, "Failed to fetch cart suggestions");
+  }
+};

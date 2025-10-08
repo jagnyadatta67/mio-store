@@ -7,14 +7,16 @@ const AnnouncementBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY && window.scrollY > 50) {
-        // scrolling down
+      const currentScrollY = window.scrollY;
+
+      // Hide when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setVisible(false);
       } else {
-        // scrolling up
         setVisible(true);
       }
-      setLastScrollY(window.scrollY);
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -23,8 +25,13 @@ const AnnouncementBar = () => {
 
   return (
     <div className={`announcement-bar ${visible ? "show" : "hide"}`}>
-      <div className="scrolling-text">
-        🚚 Free Shipping on Orders Above ₹499 — Eat Healthy, Live Better with MIO 🌾
+      <div className="scrolling-container">
+        <div className="scrolling-text">
+          <span>🚚 Free Shipping on Orders Above ₹499 — Eat Healthy, Live Better with MIO 🌾</span>
+          <span>🚚 Free Shipping on Orders Above ₹499 — Eat Healthy, Live Better with MIO 🌾</span>
+          <span>🚚 Free Shipping on Orders Above ₹499 — Eat Healthy, Live Better with MIO 🌾</span>
+          <span>🚚 Free Shipping on Orders Above ₹499 — Eat Healthy, Live Better with MIO 🌾</span>
+        </div>
       </div>
     </div>
   );

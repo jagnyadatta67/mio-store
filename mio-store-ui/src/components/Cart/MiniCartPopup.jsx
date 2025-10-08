@@ -1,43 +1,28 @@
-// src/components/Cart/MiniCartPopup.jsx
-import React, { useState, useContext } from "react";
-import { CartContext } from "./CartContext";
+import React, { useEffect } from "react";
 import "./MiniCartPopup.css";
 
-const MiniCartPopup = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext);
-  const [open, setOpen] = useState(false);
+const CartPopup = ({ product, onClose }) => {
+  console.log(product)
+  // Auto close after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(onClose, 100000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  if (!product) return null;
 
   return (
-    <div className="mini-cart-wrapper">
-      <div className="cart-icon" onClick={() => setOpen(!open)}>
-        🛒
-        {cartItems.length > 0 && <span className="badge">{cartItems.length}</span>}
+    <div className="cart-popup">
+      <img src={product.imageUrl} alt={product.name} className="cart-popup-img" />
+      <div className="cart-popup-details">
+        <p className="cart-popup-name">{product.name} - {product.unit}</p>
+        <p className="cart-popup-price">
+          ₹{product.price} × {product.quantity}
+        </p>
+        <p className="cart-popup-success">✅ Added to Cart!</p>
       </div>
-     console.log(cartItems+"sdsfsdfsdfsdf")
-      {open && (
-        <div className="mini-cart-popup">
-          console.log(cartItems)
-          {cartItems.length === 0 ? (
-            <p>Cart is empty</p>
-          ) : (
-            <ul>
-              {cartItems.map(item => (
-                <li key={item.id}>
-                  <img src={item.imageUrl} alt={item.sku} width={40} />
-                  <div>
-                    <strong>{item.sku}</strong>
-                    <p>Qty: {item.quantity}</p>
-                    {item.offer && <p>Offer: {item.offer.title}</p>}
-                  </div>
-                  <button onClick={() => removeFromCart(item.id)}>Remove</button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
     </div>
   );
 };
 
-export default MiniCartPopup;
+export default CartPopup;

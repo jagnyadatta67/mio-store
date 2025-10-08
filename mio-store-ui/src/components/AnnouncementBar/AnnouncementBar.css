@@ -1,3 +1,6 @@
+/* ==============================
+   🌟 Announcement Bar Styles
+============================== */
 .announcement-bar {
     width: 100%;
     background: #fff;
@@ -8,48 +11,66 @@
     padding: 0.6rem 0;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1500;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, opacity 0.3s ease;
   }
   
-  /* 🧩 Hide and show animation */
+  /* 🚫 Hidden when scrolling down */
   .announcement-bar.hide {
     transform: translateY(-100%);
     opacity: 0;
   }
   
+  /* ✅ Visible when scrolling up */
   .announcement-bar.show {
     transform: translateY(0);
     opacity: 1;
   }
   
-  /* ✅ scrolling marquee animation */
-  .scrolling-text {
-    display: inline-block;
+  /* ==============================
+     🌀 Scrolling Text Animation
+  ============================== */
+  .scrolling-container {
+    display: flex;
     white-space: nowrap;
-    animation: scroll-left 18s linear infinite;
+    overflow: hidden;
+    position: relative;
   }
   
-  @keyframes scroll-left {
+  .scrolling-text {
+    display: inline-flex;
+    animation: scroll-circular 15s linear infinite;
+  }
+  
+  .scrolling-text span {
+    padding-right: 4rem; /* spacing between repeats */
+  }
+  
+  /* ✨ Infinite loop animation */
+  @keyframes scroll-circular {
     0% {
-      transform: translateX(100%);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
   
-  /* 🪄 subtle hover pause */
+  /* 🧠 Hover pause for user readability */
   .scrolling-text:hover {
     animation-play-state: paused;
   }
   
-  /* ✅ responsive font size for mobile */
+  /* 📱 Responsive tweaks */
   @media (max-width: 768px) {
     .announcement-bar {
       font-size: 0.9rem;
+      padding: 0.5rem 0;
+    }
+  
+    .scrolling-text span {
+      padding-right: 2rem;
     }
   }
   
