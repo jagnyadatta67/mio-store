@@ -134,3 +134,29 @@
     to { transform: scale(1); opacity: 1; }
   }
   
+  .error-text {
+    color: #e63946;
+    font-size: 13px;
+    margin-top: 6px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .phone-input input:invalid {
+    border-color: #e63946;
+  }
+  
+  .phone-input input {
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .phone-input input:focus {
+    border-color: #0b6b4f;
+  }
+  
