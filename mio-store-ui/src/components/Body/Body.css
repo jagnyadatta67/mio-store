@@ -1,0 +1,120 @@
+/* ✅ Full-width hero image section */
+.hero-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  
+  .hero-full-img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  
+  /* ✅ Text section below the image */
+  .hero-content {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+  }
+  
+  /* 🎉 Attractive offer banner */
+  .offer-banner {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffe259, #ffa751);
+    color: #222;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    animation: pulse 2s infinite;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .offer-banner:hover {
+    transform: translateY(-2px);
+  }
+  
+  .offer-text strong {
+    color: #c62828;
+    font-weight: 700;
+  }
+  
+  /* 🪄 subtle pulse animation for highlight */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 10px rgba(255, 183, 77, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 183, 77, 0.9);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(255, 183, 77, 0.7);
+    }
+  }
+  
+  .hero-btn {
+    padding: 0.8rem 2rem;
+    background: #2e7d32;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .hero-btn:hover {
+    background: #1b5e20;
+    transform: translateY(-3px);
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 768px) {
+    .hero-full-img {
+      max-height: 60vh;
+    }
+  
+    .hero-content h1 {
+      font-size: 1.8rem;
+    }
+  
+    .hero-content p {
+      font-size: 1rem;
+    }
+  
+    .offer-banner {
+      font-size: 0.95rem;
+      padding: 0.6rem 1rem;
+    }
+  
+    .hero-btn {
+      padding: 0.7rem 1.5rem;
+      font-size: 0.95rem;
+    }
+  }
+  

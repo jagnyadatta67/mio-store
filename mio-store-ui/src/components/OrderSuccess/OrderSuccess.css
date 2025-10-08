@@ -1,0 +1,89 @@
+.order-success {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    max-width: 650px;
+    margin: 2rem auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    color: #333;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  /* 🎉 Header Section */
+  .order-success h1 {
+    font-size: 1.8rem;
+    color: #FFA751;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #FFA751, #FFE259);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .order-success p {
+    font-size: 1rem;
+    margin: 0.4rem 0;
+    color: #555;
+  }
+  
+  /* 📦 Section headers */
+  .order-success h3 {
+    margin-top: 1.6rem;
+    font-size: 1.2rem;
+    color: #FF8800;
+    border-bottom: 2px solid #FFE259;
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+  
+  /* ✅ Button */
+  .order-success .btn {
+    background: linear-gradient(45deg, #FFA751, #FFE259);
+    color: white;
+    font-weight: 600;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .order-success .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 167, 81, 0.3);
+  }
+  
+  /* 🪄 Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* 🧾 Responsive */
+  @media (max-width: 768px) {
+    .order-success {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+  
+    .order-success h1 {
+      font-size: 1.5rem;
+    }
+  
+    .order-success h3 {
+      font-size: 1.1rem;
+    }
+  
+    .order-success .btn {
+      width: 100%;
+    }
+  }
+  

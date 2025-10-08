@@ -1,0 +1,55 @@
+.announcement-bar {
+    width: 100%;
+    background: #fff;
+    color: #222;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.6rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, opacity 0.3s ease;
+  }
+  
+  /* 🧩 Hide and show animation */
+  .announcement-bar.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  .announcement-bar.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  /* ✅ scrolling marquee animation */
+  .scrolling-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 18s linear infinite;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* 🪄 subtle hover pause */
+  .scrolling-text:hover {
+    animation-play-state: paused;
+  }
+  
+  /* ✅ responsive font size for mobile */
+  @media (max-width: 768px) {
+    .announcement-bar {
+      font-size: 0.9rem;
+    }
+  }
+  

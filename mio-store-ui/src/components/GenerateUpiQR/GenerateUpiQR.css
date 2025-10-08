@@ -1,0 +1,122 @@
+.qr-generator-container {
+    max-width: 480px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    color: #333;
+  }
+  
+  .qr-generator-container h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ffa751, #ffe259);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  .desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-group {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #444;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s ease;
+  }
+  
+  .input-group input:focus {
+    border-color: #ffa751;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+  }
+  
+  .btn.generate {
+    background: linear-gradient(90deg, #ffa751, #ffe259);
+    color: #000;
+  }
+  
+  .btn.generate:hover {
+    transform: translateY(-2px);
+  }
+  
+  .btn.reset {
+    background: #f6f6f6;
+    color: #333;
+  }
+  
+  .btn.reset:hover {
+    background: #eee;
+  }
+  
+  .error {
+    color: #d93025;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .qr-display {
+    margin-top: 2rem;
+  }
+  
+  .qr-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(255, 165, 81, 0.3);
+  }
+  
+  .qr-note {
+    font-size: 0.95rem;
+    color: #444;
+    margin-top: 0.5rem;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 480px) {
+    .qr-generator-container {
+      padding: 1.5rem;
+    }
+  
+    .qr-image {
+      width: 180px;
+      height: 180px;
+    }
+  }
+  

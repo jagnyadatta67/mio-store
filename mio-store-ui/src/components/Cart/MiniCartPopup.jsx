@@ -23,7 +23,7 @@ const MiniCartPopup = () => {
             <ul>
               {cartItems.map(item => (
                 <li key={item.id}>
-                  <img src={item.imageUrl} alt={item.name} width={40} />
+                  <img src={item.imageUrl} alt={item.sku} width={40} />
                   <div>
                     <strong>{item.sku}</strong>
                     <p>Qty: {item.quantity}</p>

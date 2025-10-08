@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ add this
 import { AuthContext } from "../../context/AuthContext";
 import {
   getCartApi,
@@ -15,6 +16,7 @@ const CartPage = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
+  const navigate = useNavigate(); // ✅ add navigation hook
 
   const DELIVERY_FEE = 40;
 
@@ -100,6 +102,24 @@ const CartPage = () => {
   );
   const total = subtotal + DELIVERY_FEE;
 
+  // ✅ Navigate to Checkout
+  const handleCheckout = () => {
+    if (!token) {
+      alert("Please log in before proceeding to checkout.");
+      navigate("/login"); // redirect to login page
+      return;
+    }
+
+    // Pass total & cart items to checkout page
+    navigate("/checkout", {
+      state: {
+        cartItems: cart.items,
+        subtotal,
+        total,
+      },
+    });
+  };
+
   return (
     <div className="cart-page">
       <h1 className="cart-title">Your Cart</h1>
@@ -163,7 +183,11 @@ const CartPage = () => {
           <p className="cart-total">
             <strong>Total: ₹{total.toFixed(2)}</strong>
           </p>
-          <button className="checkout-btn" disabled={updating}>
+          <button
+            className="checkout-btn"
+            disabled={updating}
+            onClick={handleCheckout} // ✅ updated
+          >
             Proceed to Checkout
           </button>
         </div>

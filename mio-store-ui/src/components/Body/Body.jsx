@@ -2,42 +2,47 @@ import React from "react";
 import Header from "../Header/Header";
 import Carousel from "../Carousel/Carousel";
 import Footer from "../Footer/Footer";
+import "./Body.css";
+import { useNavigate } from "react-router-dom";
+import WhyMillets from "../WhyMillets/WhyMillets";
+import HeroBanner from "../HeroBanner/HeroBanner";
+import GenerateUpiQR from "../GenerateUpiQR/GenerateUpiQR";
 
 const Body = () => {
-  return (
-    <div>
-    
-      <Carousel />
-      <section className="container" id="shop">
-      <h2 className="section-title">Our Products</h2>
-      <div className="grid">
-        <article className="card">
-          <div className="card-img">
-            <img src="/images/prod-foxtail.png" alt="Foxtail Millet" />
-          </div>
-          <div className="card-body">
-            <div className="card-title">Foxtail Millet</div>
-          </div>
-        </article>
-        <article className="card">
-          <div className="card-img">
-            <img src="/images/prod-little.png" alt="Little Millet" />
-          </div>
-          <div className="card-body">
-            <div className="card-title">Little Millet</div>
-          </div>
-        </article>
-        <article className="card">
-          <div className="card-img">
-            <img src="/images/prod-finger.png" alt="Finger Millet" />
-          </div>
-          <div className="card-body">
-            <div className="card-title">Finger Millet</div>
-          </div>
-        </article>
-      </div>
-    </section>
+  const navigate = useNavigate();
 
+  const handleShopClick = () => {
+    navigate("/products"); // redirect to products page
+  };
+
+  return (
+    <div className="container">
+      <Carousel />
+
+      {/* ✅ Hero Banner Image */}
+     {/* <section className="hero-section">
+        <img
+          src="/images/hero-banner.png"
+          alt="Shop Healthy Millets"
+          className="hero-full-img"
+        />
+      </section>
+      */}
+
+      {/* ✅ Text Section Below Image */}
+      <section className="hero-content">
+          {/* 🎉 Attractive Offer Banner */}
+          <div className="offer-banner">
+          <span className="offer-text">
+            🎉 First-time order? <strong>Get 20% OFF</strong> on your first purchase!
+          </span>
+        </div>
+          <button className="hero-btn" onClick={handleShopClick}>
+          Shop Now
+        </button>
+      </section>
+      <HeroBanner />
+      <WhyMillets></WhyMillets>
     </div>
   );
 };
