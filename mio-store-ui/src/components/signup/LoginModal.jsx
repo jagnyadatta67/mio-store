@@ -14,13 +14,8 @@ const LoginModal = ({ onClose }) => {
     setLoading(true);
     try {
       const response = await sendOtp(identifier);
-      console.log("Send OTP response:", response);
-  
-      if (response.status === 200 && response.data) {
-        setStep("verify");
-      } else {
-        alert("Failed to send OTP. Try again.");
-      }
+      if (response.status === 200 && response.data) setStep("verify");
+      else alert("Failed to send OTP. Try again.");
     } catch (error) {
       console.error("Send OTP Error:", error);
       alert("Something went wrong while sending OTP.");
@@ -28,23 +23,17 @@ const LoginModal = ({ onClose }) => {
       setLoading(false);
     }
   };
-  
+
   const handleVerifyOtp = async () => {
     setLoading(true);
     try {
       const response = await verifyOtp(identifier, otp);
-      console.log("Verify OTP Response:", response);
-  
-      // ✅ Your backend wraps token inside response.data
       const token = response?.data?.token;
-  
       if (token) {
         login({ phone: identifier }, token);
         alert(response?.data?.message || "Login successful!");
         onClose();
-      } else {
-        alert("Invalid OTP, please try again.");
-      }
+      } else alert("Invalid OTP, please try again.");
     } catch (error) {
       console.error("Verify OTP Error:", error);
       alert("Error verifying OTP. Please try again.");
@@ -52,42 +41,67 @@ const LoginModal = ({ onClose }) => {
       setLoading(false);
     }
   };
-  
-  
 
   return (
     <div className="modal-backdrop">
-      <div className="login-modal">
+      <div className="login-modal-container">
         <button className="close-btn" onClick={onClose}>✖</button>
 
-        <h2>{step === "send" ? "Login / Signup" : "Enter OTP"}</h2>
+        {/* 🥣 Header Section */}
+        <div className="modal-header">
+          <img src="/images/mio-logo.png" alt="MIO Logo" className="mio-logo" />
+          <h2>Made with Love & Millets ❤️</h2>
+          <p>Zero Junk. Pure Nutrition. For You & Your Family.</p>
+        </div>
 
-        {step === "send" ? (
-          <>
-            <input
-              type="text"
-              placeholder="Enter mobile or email"
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
-            />
-            <button onClick={handleSendOtp} disabled={loading || !identifier}>
-              {loading ? "Sending..." : "Send OTP"}
-            </button>
-          </>
-        ) : (
-          <>
-            <p className="otp-instruction">We’ve sent an OTP to {identifier}</p>
-            <input
-              type="text"
-              placeholder="Enter OTP"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-            />
-            <button onClick={handleVerifyOtp} disabled={loading || !otp}>
-              {loading ? "Verifying..." : "Verify OTP"}
-            </button>
-          </>
-        )}
+        {/* 📱 Form Section */}
+        <div className="login-box">
+          {step === "send" ? (
+            <>
+              <h3>Get 10% off on your first purchase!</h3>
+              <div className="phone-input">
+                <span className="country-code">
+                  🇮🇳 +91
+                </span>
+                <input
+                  type="tel"
+                  placeholder="Enter Mobile Number"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                />
+              </div>
+              <label className="notify-checkbox">
+                <input type="checkbox" /> Notify me for offers & updates
+              </label>
+              <button
+                onClick={handleSendOtp}
+                disabled={loading || !identifier}
+                className="submit-btn"
+              >
+                {loading ? "Sending..." : "Login/Signup"}
+              </button>
+            </>
+          ) : (
+            <>
+              <h3>Verify OTP</h3>
+              <p>We’ve sent an OTP to {identifier}</p>
+              <input
+                type="text"
+                className="otp-input"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+              <button
+                onClick={handleVerifyOtp}
+                disabled={loading || !otp}
+                className="submit-btn"
+              >
+                {loading ? "Verifying..." : "Verify OTP"}
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

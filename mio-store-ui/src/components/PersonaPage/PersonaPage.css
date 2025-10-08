@@ -1,0 +1,109 @@
+.persona-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fffefb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  h1 {
+    color: #00a86b;
+    text-align: center;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  .persona-form section {
+    margin-bottom: 2rem;
+  }
+  
+  .persona-form h2 {
+    color: #444;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.6rem;
+  }
+  
+  .options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+  
+  .options-grid button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #aaa;
+    background: #f9f9f9;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .options-grid button.selected {
+    background: #00a86b;
+    color: white;
+    border-color: #00a86b;
+  }
+  
+  .btn-submit, .btn-refresh {
+    background: linear-gradient(90deg, #ffa751, #ffe259);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 1rem auto 0;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-submit:hover, .btn-refresh:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .summary-card {
+    text-align: center;
+    background: #fffdf7;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+    

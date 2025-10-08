@@ -81,6 +81,9 @@ const Header = () => {
 
                 {menuOpen && (
                   <div className="account-menu">
+                     <Link to="/my-profile" onClick={() => setMenuOpen(false)}>
+                    🌿 My Wellness Profile
+                    </Link>
                     <Link to="/my-orders" onClick={() => setMenuOpen(false)}>
                       🧾 My Orders
                     </Link>

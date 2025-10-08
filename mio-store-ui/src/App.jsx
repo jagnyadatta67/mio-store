@@ -13,6 +13,7 @@ import CheckoutPage from "./components/CheckoutPage/CheckoutPage"; // ✅ import
 import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
 import MyOrders from "./components/MyOrders/MyOrders";
 import MyAddresses from "./components/MyAddresses/MyAddresses";
+import PersonaPage from "./components/PersonaPage/PersonaPage"; // ✅ adjust path
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/my-orders" element={<MyOrders />} />
           <Route path="/my-addresses" element={<MyAddresses />} />
+          <Route path="/my-profile" element={<PersonaPage />} />
         </Routes>
         <Footer />
       </Router>
